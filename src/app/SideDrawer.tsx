@@ -29,6 +29,8 @@ const SideDrawer = ({
       open={drawerIsOpen}
       onClose={toggleDrawer(false)}
       onOpen={toggleDrawer(true)}
+      disableDiscovery
+      disableSwipeToOpen
       ModalProps={{ keepMounted: true }}
     >
       <Box
