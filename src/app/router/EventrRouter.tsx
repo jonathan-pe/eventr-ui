@@ -4,15 +4,20 @@ import Events from '../../modules/events/events'
 import Calendar from '../../modules/calendar/calendar'
 import Login from '../../modules/login/login'
 
-const EventrRouter = (): JSX.Element => {
-  const isAuthenticated = false
+const EventrRouter = ({ isAuthenticated }: { isAuthenticated: boolean }): JSX.Element => {
   return (
     <Switch>
-      <PrivateRoute path='/events' component={Events} />
-      <PrivateRoute path='/calendar' component={Calendar} />
       <Route path='/login' component={Login} />
 
+      <PrivateRoute path='/events' isAuthenticated={isAuthenticated}>
+        <Events />
+      </PrivateRoute>
+      <PrivateRoute path='/calendar' isAuthenticated={isAuthenticated}>
+        <Calendar />
+      </PrivateRoute>
+
       <Route
+        exact
         path='/'
         render={props =>
           isAuthenticated ? (

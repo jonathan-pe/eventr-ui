@@ -10,6 +10,7 @@ import { CssBaseline } from '@mui/material'
 import { StylesProvider } from '@mui/styles'
 import GlobalStyle from './app/globalStyles'
 import EventrRouter from './app/router/EventrRouter'
+import { BrowserRouter } from 'react-router-dom'
 
 const StyledToastContainer = styled(ToastContainer)`
   .Toastify__toast-theme--dark {
@@ -25,6 +26,9 @@ const App = (): JSX.Element => {
   const [mode, setMode] = useState<'dark' | 'light'>('dark')
   const [theme, setTheme] = useState<Theme>(createTheme(mode === 'dark' ? darkTheme : lightTheme))
   const [drawerIsOpen, setDrawerIsOpen] = useState<boolean>(false)
+
+  //TODO: Check for authentication here
+  const isAuthenticated = true
 
   useEffect(() => {
     const preferredMode = localStorage.getItem('preferredMode')
@@ -63,14 +67,23 @@ const App = (): JSX.Element => {
 
   return (
     <StylesProvider>
-      <GlobalStyle />
-      <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <GlobalStyle />
         <CssBaseline />
-        <StyledToastContainer theme={mode} autoClose={12000} />
-        <NavBar toggleDrawer={toggleDrawer} />
-        <SideDrawer toggleDrawer={toggleDrawer} drawerIsOpen={drawerIsOpen} mode={mode} toggleTheme={toggleTheme} />
-        <EventrRouter />
-      </ThemeProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <StyledToastContainer theme={mode} autoClose={12000} />
+          <NavBar toggleDrawer={toggleDrawer} isAuthenticated={isAuthenticated} />
+          <SideDrawer
+            toggleDrawer={toggleDrawer}
+            drawerIsOpen={drawerIsOpen}
+            mode={mode}
+            toggleTheme={toggleTheme}
+            isAuthenticated={isAuthenticated}
+          />
+          <EventrRouter isAuthenticated={isAuthenticated} />
+        </ThemeProvider>
+      </BrowserRouter>
     </StylesProvider>
   )
 }

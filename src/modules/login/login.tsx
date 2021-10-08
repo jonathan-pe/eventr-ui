@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import { Container, Typography } from '@mui/material'
+import handleLoginError from '../../lib/handleLoginError'
+import { useLocation } from 'react-router'
 
 const StyledContainer = styled(Container)`
   display: flex;
@@ -9,6 +11,10 @@ const StyledContainer = styled(Container)`
 `
 
 const Login = (): JSX.Element => {
+  const queryParams = new URLSearchParams(useLocation().search)
+
+  handleLoginError(queryParams)
+
   return (
     <StyledContainer>
       <Typography align='center'>Login Page</Typography>

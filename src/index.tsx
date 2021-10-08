@@ -1,21 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import GlobalStyle from './app/globalStyles'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import { CssBaseline } from '@mui/material'
-import { StylesProvider } from '@mui/styles'
-import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(
   <React.StrictMode>
-    <StylesProvider>
-      <GlobalStyle />
-      <CssBaseline />
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </StylesProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 )

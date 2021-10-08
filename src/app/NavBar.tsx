@@ -8,9 +8,10 @@ import MenuIcon from '@mui/icons-material/Menu'
 
 interface NavbarProps {
   toggleDrawer: (drawerIsOpen: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => void
+  isAuthenticated: boolean
 }
 
-export default function NavBar({ toggleDrawer }: NavbarProps): JSX.Element {
+export default function NavBar({ toggleDrawer, isAuthenticated }: NavbarProps): JSX.Element {
   return (
     <AppBar position='static'>
       <Toolbar>
@@ -27,9 +28,11 @@ export default function NavBar({ toggleDrawer }: NavbarProps): JSX.Element {
         <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
           eventr
         </Typography>
-        <Button color='inherit' onClick={() => console.log('TODO: Write signOut()')}>
-          Sign Out
-        </Button>
+        {isAuthenticated && (
+          <Button color='inherit' onClick={() => console.log('TODO: Write signOut()')}>
+            Sign Out
+          </Button>
+        )}
       </Toolbar>
     </AppBar>
   )
