@@ -5,6 +5,7 @@ import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import IconButton from '@mui/material/IconButton'
 import { Brightness2Outlined, Brightness7 } from '@mui/icons-material'
+import { useHistory } from 'react-router-dom'
 
 interface SideDrawerProps {
   toggleDrawer: (drawerIsOpen: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => void
@@ -14,6 +15,7 @@ interface SideDrawerProps {
 }
 
 const SideDrawer = ({ toggleDrawer, drawerIsOpen, mode, toggleTheme }: SideDrawerProps): JSX.Element => {
+  const history = useHistory()
   return (
     <Drawer anchor={'left'} open={drawerIsOpen} onClose={toggleDrawer(false)}>
       <Box
@@ -30,10 +32,10 @@ const SideDrawer = ({ toggleDrawer, drawerIsOpen, mode, toggleTheme }: SideDrawe
         onKeyDown={toggleDrawer(false)}
       >
         <List>
-          <ListItem button sx={{ pr: 3, pl: 3 }}>
+          <ListItem button sx={{ pr: 3, pl: 3 }} onClick={() => history.push('/events')}>
             <ListItemText>Events</ListItemText>
           </ListItem>
-          <ListItem button sx={{ pr: 3, pl: 3 }}>
+          <ListItem button sx={{ pr: 3, pl: 3 }} onClick={() => history.push('/calendar')}>
             <ListItemText>Calendar</ListItemText>
           </ListItem>
         </List>

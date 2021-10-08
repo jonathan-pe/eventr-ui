@@ -5,13 +5,16 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { CssBaseline } from '@mui/material'
 import { StylesProvider } from '@mui/styles'
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(
   <React.StrictMode>
     <StylesProvider>
       <GlobalStyle />
       <CssBaseline />
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </StylesProvider>
   </React.StrictMode>,
   document.getElementById('root')

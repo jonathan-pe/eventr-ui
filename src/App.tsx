@@ -6,9 +6,10 @@ import { ToastContainer } from 'react-toastify'
 import { darkTheme, lightTheme } from './app/theme'
 import 'react-toastify/dist/ReactToastify.css'
 import styled from 'styled-components'
-import { Container, CssBaseline, Typography } from '@mui/material'
+import { CssBaseline } from '@mui/material'
 import { StylesProvider } from '@mui/styles'
 import GlobalStyle from './app/globalStyles'
+import EventrRouter from './app/router/EventrRouter'
 
 const StyledToastContainer = styled(ToastContainer)`
   .Toastify__toast-theme--dark {
@@ -18,13 +19,6 @@ const StyledToastContainer = styled(ToastContainer)`
   .Toastify__progress-bar-theme--dark {
     background: #fca311;
   }
-`
-
-const StyledContainer = styled(Container)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 64px);
 `
 
 const App = (): JSX.Element => {
@@ -75,10 +69,7 @@ const App = (): JSX.Element => {
         <StyledToastContainer theme={mode} autoClose={12000} />
         <NavBar toggleDrawer={toggleDrawer} />
         <SideDrawer toggleDrawer={toggleDrawer} drawerIsOpen={drawerIsOpen} mode={mode} toggleTheme={toggleTheme} />
-
-        <StyledContainer>
-          <Typography align='center'>Loading...</Typography>
-        </StyledContainer>
+        <EventrRouter />
       </ThemeProvider>
     </StylesProvider>
   )
