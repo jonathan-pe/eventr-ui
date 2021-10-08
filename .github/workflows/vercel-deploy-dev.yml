@@ -19,12 +19,15 @@ jobs:
       - name: Install dependencies and build release
         run: yarn && yarn build
 
-      - name: Run cypress tests
-        uses: cypress-io/github-action@v2
-        with:
-          start: yarn start
-        env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI_DEV }}
+      - name: Run unit tests
+        run: yarn test
+
+      # - name: Run cypress tests
+      #   uses: cypress-io/github-action@v2
+      #   with:
+      #     start: yarn start
+      #   env:
+      #     MONGODB_URI: ${{ secrets.MONGODB_URI_DEV }}
 
       - uses: actions/setup-node@v1
         with:
