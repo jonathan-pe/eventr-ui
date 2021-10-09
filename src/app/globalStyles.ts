@@ -16,6 +16,27 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #000000;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 50px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #333;
+  }
 `
 
 export default GlobalStyle
