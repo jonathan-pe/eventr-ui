@@ -1,18 +1,55 @@
 import styled from 'styled-components'
-import { Container, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
+import EventCard from './eventCard'
 
-const StyledContainer = styled(Container)`
+const StyledBox = styled(Box)`
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: calc(100vh - 64px);
+  min-height: calc(100vh - 64px);
+  overflow: scroll;
+`
+
+const EventsContainer = styled(Box)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px 50px;
 `
 
 const Events = (): JSX.Element => {
   return (
-    <StyledContainer>
+    <StyledBox>
       <Typography align='center'>Events Page</Typography>
-    </StyledContainer>
+      <EventsContainer>
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+      </EventsContainer>
+    </StyledBox>
   )
 }
 

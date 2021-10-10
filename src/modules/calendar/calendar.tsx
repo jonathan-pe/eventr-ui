@@ -3,7 +3,6 @@ import { Box } from '@mui/material'
 import FullCalendar, { EventSourceInput } from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
-import useMediaQuery from '@mui/material/useMediaQuery'
 
 const PageBox = styled(Box)`
   display: flex;
@@ -87,8 +86,6 @@ const CalendarBox = styled(Box)`
 `
 
 const Calendar = (): JSX.Element => {
-  const screenIsBig = useMediaQuery('(max-width: 800px)')
-
   const testEvents: EventSourceInput = [
     { title: 'event 1', date: new Date('2021-10-4'), allDay: true },
     { title: 'event 2', date: new Date('2021-10-7'), end: new Date('2021-10-10') },
@@ -98,31 +95,27 @@ const Calendar = (): JSX.Element => {
   return (
     <PageBox sx={{ mt: 5, mb: 5, ml: 5, mr: 5 }}>
       <CalendarBox>
-        {screenIsBig ? (
-          <Box>hello</Box>
-        ) : (
-          <FullCalendar
-            plugins={[dayGridPlugin, interactionPlugin]}
-            events={testEvents}
-            headerToolbar={{
-              start: 'title',
-              center: '',
-              end: 'today prevYear,prev,next,nextYear',
-            }}
-            buttonText={{
-              today: 'Today',
-            }}
-            selectable={true}
-            editable={true}
-            dateClick={info => console.log('data clicked', info)}
-            eventClick={info => console.log('event clicked', info)}
-            unselectAuto={true}
-            initialView='dayGridMonth'
-            dayMaxEvents={3}
-            height={'100%'}
-            contentHeight={'auto'}
-          />
-        )}
+        <FullCalendar
+          plugins={[dayGridPlugin, interactionPlugin]}
+          events={testEvents}
+          headerToolbar={{
+            start: 'title',
+            center: '',
+            end: 'today prevYear,prev,next,nextYear',
+          }}
+          buttonText={{
+            today: 'Today',
+          }}
+          selectable={true}
+          editable={true}
+          dateClick={info => console.log('data clicked', info)}
+          eventClick={info => console.log('event clicked', info)}
+          unselectAuto={true}
+          initialView='dayGridMonth'
+          dayMaxEvents={3}
+          height={'100%'}
+          contentHeight={'auto'}
+        />
       </CalendarBox>
     </PageBox>
   )
