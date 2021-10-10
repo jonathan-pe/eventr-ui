@@ -1,10 +1,8 @@
 import styled from 'styled-components'
 import { Box } from '@mui/material'
-import FullCalendar from '@fullcalendar/react'
+import FullCalendar, { EventSourceInput } from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
-import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
-import list from '@fullcalendar/list'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 const PageBox = styled(Box)`
@@ -41,11 +39,14 @@ const CalendarBox = styled(Box)`
   .fc-h-event {
     background-color: #fca311;
     border: 1px solid #fca311;
-  }
 
-  .fc-v-event {
-    background-color: #fca311;
-    border: 1px solid #fca311;
+    .fc-event-title {
+      color: black;
+    }
+
+    .fc-event-time {
+      color: black;
+    }
   }
 
   .fc-timegrid-event {
@@ -80,10 +81,6 @@ const CalendarBox = styled(Box)`
     color: #000000;
   }
 
-  .fc-v-event > * {
-    color: #000000;
-  }
-
   .fc-popover {
     background: #14213d;
   }
@@ -92,6 +89,12 @@ const CalendarBox = styled(Box)`
 const Calendar = (): JSX.Element => {
   const screenIsBig = useMediaQuery('(max-width: 800px)')
 
+  const testEvents: EventSourceInput = [
+    { title: 'event 1', date: new Date('2021-10-4'), allDay: true },
+    { title: 'event 2', date: new Date('2021-10-7'), end: new Date('2021-10-10') },
+    { title: 'event 3', date: new Date() },
+  ]
+
   return (
     <PageBox sx={{ mt: 5, mb: 5, ml: 5, mr: 5 }}>
       <CalendarBox>
@@ -99,28 +102,20 @@ const Calendar = (): JSX.Element => {
           <Box>hello</Box>
         ) : (
           <FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin, list, interactionPlugin]}
-            events={[
-              { title: 'event 1', date: new Date('2021-10-4'), allDay: true },
-              { title: 'event 2', date: new Date('2021-10-7'), end: new Date('2021-10-10') },
-              { title: 'event 3', date: new Date() },
-            ]}
+            plugins={[dayGridPlugin, interactionPlugin]}
+            events={testEvents}
             headerToolbar={{
               start: 'title',
               center: '',
-              end: 'dayGridMonth,timeGridWeek,timeGrid today prevYear,prev,next,nextYear',
+              end: 'today prevYear,prev,next,nextYear',
             }}
             buttonText={{
               today: 'Today',
-              dayGridMonth: 'Month',
-              timeGrid: 'Day',
-              timeGridWeek: 'Week',
             }}
             selectable={true}
             editable={true}
             dateClick={info => console.log('data clicked', info)}
             eventClick={info => console.log('event clicked', info)}
-            selectMirror={true}
             unselectAuto={true}
             initialView='dayGridMonth'
             dayMaxEvents={3}
